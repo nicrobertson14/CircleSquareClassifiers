@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import scipy.io
 import numpy as np
 import matplotlib
@@ -69,10 +68,8 @@ def makeKdTree(images,labels,feature):
     root.image = sorted_images[median_index,:]
     root.label = sorted_labels[median_index,:][0]
 
-
     if(size == 1):
         root.leaf = "LEAF"
-#        root.label = sorted_labels[median_index,:][0]
         return root
     
     root.left = makeKdTree(sorted_images[0:median_index,:],sorted_labels[0:median_index,:],feature+1)
@@ -108,7 +105,6 @@ def searchKdTree(root,input,best):
 def knnVote(neighbours):
     size = len(neighbours)
     count = 0
-#    print(neighbours)
     for neighbour in neighbours:
         if(neighbour[1] == 1):
             count += 1
@@ -131,12 +127,15 @@ def testClassifier(images,labels,k):
     
     return np.sum(accuracy)/len(accuracy)
 
+
+### main ###
+
 dataset = scipy.io.loadmat('./img-data/dataset.mat')
 trainImages = dataset['train_image'].reshape(200,576)
 trainLabels = dataset['train_label']
 testImages = dataset['test_image'].reshape(200,576)
 testLabels = dataset['test_label']
-
+k = int(sys.argv[1])
 
 tree = makeKdTree(trainImages,trainLabels,0)
-print(testClassifier(testImages,testLabels,int(sys.argv[1])))
+print(testClassifier(testImages,testLabels,k))
