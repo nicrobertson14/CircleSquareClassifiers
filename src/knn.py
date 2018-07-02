@@ -6,6 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from scipy import spatial
 import math
+import sys
 from operator import itemgetter
 import time
 
@@ -138,4 +139,4 @@ testLabels = dataset['test_label']
 
 
 tree = makeKdTree(trainImages,trainLabels,0)
-testClassifier(testImages,testLabels,2)
+print(testClassifier(testImages,testLabels,sys.argv[1]))
