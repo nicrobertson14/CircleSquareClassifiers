@@ -6,6 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from scipy import spatial
 import math
+import sys
 from operator import itemgetter
 import time
 
@@ -130,7 +131,7 @@ def testClassifier(images,labels,k):
     
     return np.sum(accuracy)/len(accuracy)
 
-dataset = scipy.io.loadmat('dataset.mat')
+dataset = scipy.io.loadmat('./img-data/dataset.mat')
 trainImages = dataset['train_image'].reshape(200,576)
 trainLabels = dataset['train_label']
 testImages = dataset['test_image'].reshape(200,576)
@@ -138,4 +139,4 @@ testLabels = dataset['test_label']
 
 
 tree = makeKdTree(trainImages,trainLabels,0)
-testClassifier(testImages,testLabels,2)
+print(testClassifier(testImages,testLabels,int(sys.argv[1])))
