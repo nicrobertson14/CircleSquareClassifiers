@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import numpy as np
 import scipy.io
 import matplotlib
@@ -122,7 +121,7 @@ def TestClassifier(image_tuples):
 
     return correct_count/len(image_tuples)
     
-
+### main ###
 
 dataset = scipy.io.loadmat('dataset.mat')
 trainImages = dataset['train_image'].reshape(200,576)
@@ -136,11 +135,6 @@ for i in range(0,200,1):
     test_tuples.append([testImages[i,:],testLabels[i][0]])
     
 tree = DTL(list(range(0,576)),train_tuples,None,0.0)
-times = []
-for i in range(10):
-    t0 = time.clock()
-    TestClassifier(test_tuples)
-    times.append(time.clock()-t0)
+print(TestClassifier(test_tuples))
 
-print(np.median(times))
 
