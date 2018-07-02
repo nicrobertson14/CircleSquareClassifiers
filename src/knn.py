@@ -130,7 +130,7 @@ def testClassifier(images,labels,k):
     
     return np.sum(accuracy)/len(accuracy)
 
-dataset = scipy.io.loadmat('dataset.mat')
+dataset = scipy.io.loadmat('../img-data/dataset.mat')
 trainImages = dataset['train_image'].reshape(200,576)
 trainLabels = dataset['train_label']
 testImages = dataset['test_image'].reshape(200,576)
