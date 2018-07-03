@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import scipy.io
 import numpy as np
 import matplotlib
@@ -66,10 +65,10 @@ def makeKdTree(images,labels,feature):
     root.data = median
     root.d = feature
     root.image = sorted_images[median_index,:]
-    root.label = sorted_labels[median_index,:][0]
 
     if(size == 1):
         root.leaf = "LEAF"
+        root.label = sorted_labels[median_index,:][0]
         return root
     
     root.left = makeKdTree(sorted_images[0:median_index,:],sorted_labels[0:median_index,:],feature+1)
@@ -81,11 +80,11 @@ def makeKdTree(images,labels,feature):
 def searchKdTree(root,input,best):
     global neighbours
     if(root == None):
-        return best
+        return
     if(isLeaf(root)):
         addNeighbour((Euclidean(root.image,input),root.label))
         if(best == -1):
-            return root
+            return
     
     if(input[root.d] < root.data):
         child_near = root.left
@@ -94,12 +93,10 @@ def searchKdTree(root,input,best):
         child_near = root.right
         child_far = root.left
     
-    best = searchKdTree(child_near,input,best)
+    searchKdTree(child_near,input,best)
     last = len(neighbours) - 1
     if(distanceLB(root,input) < neighbours[last][0] or neighbours[last][0] == math.inf):
-        best = searchKdTree(child_far,input,best)
-
-    return best
+        searchKdTree(child_far,input,best)
 
 # predicts image label based on majority vote from k nearest neighbours
 def knnVote(neighbours):
@@ -112,20 +109,19 @@ def knnVote(neighbours):
     return count > int(size/2)
 
 # searches k-d tree for knn of each test image and prints prediction accuracy
-def testClassifier(images,labels,k):
+def testKNNClassifier(images,labels,k):
     global tree, neighbours
-    accuracy = []
+    correct_count = 0
     for i in range(labels.size):
         neighbours = [(math.inf,math.inf)] * k
         searchKdTree(tree,images[i,:],-1)
 
         if(knnVote(neighbours) == labels[i,:][0]):
-            accuracy.append(1)
-        else:
-            accuracy.append(0)
+            correct_count += 1
+
         neighbours.clear()
     
-    return np.sum(accuracy)/len(accuracy)
+    return correct_count/len(images)
 
 
 ### main ###
