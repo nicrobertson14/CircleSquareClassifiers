@@ -1,11 +1,9 @@
 import numpy as np
 import scipy as sp
 import scipy.io
-import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib
-import IPython
 import sklearn
 import keras
 from keras.models import Sequential
