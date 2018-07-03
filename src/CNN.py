@@ -13,7 +13,7 @@ from keras.layers import Dense, Flatten
 from keras import backend as K
 
 # the data, split between train and test sets
-dataset = scipy.io.loadmat('dataset.mat')
+dataset = scipy.io.loadmat('./img-data/dataset.mat')
 x_train = dataset['train_image'].reshape(200,576)
 y_train = dataset['train_label']
 x_test = dataset['test_image'].reshape(200,576)
