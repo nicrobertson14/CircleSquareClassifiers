@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import numpy as np
 import scipy.io
 import matplotlib
@@ -26,6 +25,7 @@ def mode(image_tuples):
             return 1
     return 0
 
+# returns the entropy of a set of images
 def Entropy(image_tuples):
     c1 = 0
     size = len(image_tuples)
@@ -38,6 +38,7 @@ def Entropy(image_tuples):
         return 0
     return -1 * (c1/size) * math.log2(c1/size) - (c2/size) * math.log2(c2/size)
 
+# returns the information gain after splitting a set of images
 def InformationGain(before,left,right):
     size = len(before)
     ent_before = Entropy(before)
@@ -128,6 +129,8 @@ trainImages = dataset['train_image'].reshape(200,576)
 trainLabels = dataset['train_label']
 testImages = dataset['test_image'].reshape(200,576)
 testLabels = dataset['test_label']
+
+# Re-arrange data into train/test lists of tuples
 train_tuples = []
 test_tuples = []
 for i in range(0,200,1):
