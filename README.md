@@ -1,6 +1,6 @@
 # Classifying Circles & Squares
 
-This project contains implementations of several machine learning methods for classifying a dataset of noisy input images as either circles or squares. 
+This project contains implementations of several machine learning methods for classifying a dataset of noisy input images as either circles or squares. Each method outputs  testing accuracy to stdout
 
 | [![Square](https://raw.githubusercontent.com/nicrobertson14/CircleSquareClassifiers/master/img-data/Square.png)](Square) |
 [![Circle](https://raw.githubusercontent.com/nicrobertson14/CircleSquareClassifiers/master/img-data/Circle.png)](Circle) |
