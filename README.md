@@ -16,7 +16,7 @@ CNN.py requires keras, tensorflow packages
 ## Usage
 To build a kd-tree and perform 'k' nearest neighbour search simply run ```python src/knn.py k``` where 0 < k < 200
 
-To build decision trees run ```python src/DT.py i``` where i is a pre-pruning information content threshold 0 <= i <= 1
+To build decision trees run ```python src/DT.py ```
 
 To build a convolutional neural network run ```python src/CNN.py```
 
