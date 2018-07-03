@@ -8,7 +8,7 @@ This project contains implementations of several machine learning methods for cl
 | Square | Circle |
 
 ## Dataset
-The image dataset contains 200 training images and 200 test images, all splitting is contained inside source code
+The image dataset contains 200 training images and 200 test images
 
 ## Dependencies
 CNN.py requires keras, tensorflow packages
