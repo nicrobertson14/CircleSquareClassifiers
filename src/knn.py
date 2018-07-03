@@ -134,4 +134,4 @@ testLabels = dataset['test_label']
 k = int(sys.argv[1])
 
 tree = makeKdTree(trainImages,trainLabels,0)
-print(testClassifier(testImages,testLabels,k))
+print(testKNNClassifier(testImages,testLabels,k))
